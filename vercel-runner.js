@@ -1,4 +1,5 @@
 var exec = require('child_process').exec;
+const fs = require('fs');
 
 async function executeCommand(command) {
     return new Promise((resolve, reject) => {
@@ -20,8 +21,12 @@ async function executeCommand(command) {
 }
 
 async function main() {
-    await executeCommand("npm install")
-    await executeCommand("npm run build")
+    if (!fs.existsSync("./node_modules")) {
+        await executeCommand("npm install")
+    }
+    if (!fs.existsSync("./dist")) {
+        await executeCommand("npm run build")
+    }
 
     return require("./dist/main");
 }
