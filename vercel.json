@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "typescript-starter-nestjs",
+    "builds": [
+      { "src": "dist/main.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/index.js" }
+    ]
+  }
